@@ -1,3 +1,3 @@
-import mappings from './mappings';
+import mappings from "./mappings";
 
 export { mappings };

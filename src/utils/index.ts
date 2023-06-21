@@ -1,1 +1,1 @@
-export * from './word.utils';
+export * from "./word.utils";
