@@ -1,0 +1,130 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  margin: 0;
+  font-family: "Roboto", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+
+:root {
+  /** sunny side **/
+  --blue-background: #c2e9f6;
+  --blue-border: #72cce3;
+  --blue-color: #96dcee;
+  --yellow-background: #fffaa8;
+  --yellow-border: #f5eb71;
+  /** dark side **/
+  --indigo-background: #808fc7;
+  --indigo-border: #5d6baa;
+  --indigo-color: #6b7abb;
+  --gray-border: #e8e8ea;
+  --gray-dots: #e8e8ea;
+  /** general **/
+  --white: #fff;
+}
+
+.toggle--checkbox {
+  display: none;
+}
+
+.toggle--label {
+  width: 60px;
+  height: 30px;
+  background: linear-gradient(180deg, #66ffed 0%, #ffeeb2 100%);
+  box-shadow: inset 0px 6px 8px 3px rgba(0, 0, 0, 0.25);
+  border-radius: 50px;
+  display: flex;
+  position: relative;
+  transition: all 350ms ease-in;
+}
+
+.toggle--label:before {
+  animation-name: reverse;
+  animation-duration: 350ms;
+  animation-fill-mode: forwards;
+  transition: all 50ms ease-in;
+  content: "";
+  width: 24px;
+  height: 24px;
+  border: 3px solid linear-gradient(180deg, #ffc123 0%, #f8832e 100%);
+  top: 3px;
+  right: 3px;
+  position: absolute;
+  border-radius: 22px;
+  background: linear-gradient(180deg, #ffc123 0%, #f8832e 100%);
+}
+
+.toggle--checkbox:checked + .toggle--label {
+  background: linear-gradient(183.67deg, #2b4485 6.6%, #afcaff 96.98%);
+}
+
+.toggle--checkbox:checked + .toggle--label:before {
+  background: linear-gradient(180deg, #cee5ff 0%, #edf6ff 99.99%, #f1f9ff 100%);
+  border-color: 5px solid linear-gradient(180deg, #d6e9ff 0%, #cde4ff 100%);
+  animation-name: switch;
+  animation-duration: 350ms;
+  animation-fill-mode: forwards;
+}
+
+@keyframes reverse {
+  0% {
+    right: 30px;
+    width: 24px;
+  }
+  60% {
+    right: 26px;
+    width: 34px;
+  }
+  100% {
+    right: 4px;
+  }
+}
+
+@keyframes switch {
+  0% {
+    right: 4px;
+  }
+  60% {
+    right: 4px;
+    width: 34px;
+  }
+  100% {
+    right: 30px;
+    width: 24px;
+  }
+}
+
+/* @keyframes switch {
+  0% {
+    right: 4px;
+  }
+  60% {
+    right: 4px;
+    width: 112px;
+  }
+  100% {
+    right: 104px;
+    width: 82px;
+  }
+}
+@keyframes reverse {
+  0% {
+    right: 104px;
+    width: 82px;
+  }
+  60% {
+    right: 72px;
+    width: 112px;
+  }
+  100% {
+    right: 4px;
+  }
+} */
