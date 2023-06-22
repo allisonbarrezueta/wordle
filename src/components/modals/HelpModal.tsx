@@ -10,9 +10,10 @@ type ModalProps = {
     newGame: () => void;
     isFirstVisit: boolean;
     start: () => void;
+    isDark: boolean;
 };
 
-const HelpModal: React.FC<ModalProps> = ({ isOpen, onClose, isFirstVisit, start }) => {
+const HelpModal: React.FC<ModalProps> = ({ isOpen, onClose, isFirstVisit, start, isDark }) => {
     if (!isOpen) {
         return null;
     }
@@ -38,7 +39,7 @@ const HelpModal: React.FC<ModalProps> = ({ isOpen, onClose, isFirstVisit, start 
                             leaveFrom="opacity-100 scale-100"
                             leaveTo="opacity-0 scale-95">
                             <Dialog.Panel className="w-full max-w-lg transform overflow-hidden bg-[#f3f3f3e2] dark:bg-darkHelpBg dark:border-[#939B9F] dark:border-1 p-6 text-left align-middle transition-all border-black border-1 rounded-md flex flex-col">
-                                <div className="font-extrabold leading-11 text-black text-35 justify-center items-center flex dark:text-white">
+                                <div className="font-extrabold leading-11 text-black text-35 justify-center items-center flex dark:text-white my-5">
                                     Cómo Jugar
                                 </div>
                                 <div className="flex flex-col space-y-3 my-4 dark:text-white text-black">
@@ -48,15 +49,15 @@ const HelpModal: React.FC<ModalProps> = ({ isOpen, onClose, isFirstVisit, start 
                                         Después de cada intento el color de las letras cambia para mostrar qué tan cerca estás de acertar la palabra.
                                     </span>
                                     <span className="text-[19px] font-bold leading-6.5 mb-4">Ejemplos</span>
-                                    <ExampleIcon1 />
+                                    <ExampleIcon1 isDark={isDark} />
                                     <span className="text-[19px] mt-2">
                                         La letra <b>G</b> está en la palabra y en la posición correcta.
                                     </span>
-                                    <ExampleIcon2 />
+                                    <ExampleIcon2 isDark={isDark} />
                                     <span className="text-[19px] mt-2">
                                         La letra <b>c</b> La letra C está en la palabra pero en la posición incorrecta.
                                     </span>
-                                    <ExampleIcon3 />
+                                    <ExampleIcon3 isDark={isDark} />
                                     <span className="text-[19px] mt-2">
                                         La letra <b>O</b> no esta en la palabra.
                                     </span>

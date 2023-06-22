@@ -80,7 +80,14 @@ function App() {
             <GuessGrid guess={guess} setGuess={setGuess} />
             <KeyboardInput onLetterPressed={addGuessLetter} />
 
-            <HelpModal isOpen={isHelpModalOpen} onClose={closeHelpModal} newGame={newGame} isFirstVisit={isFirstVisit} start={start} />
+            <HelpModal
+                isOpen={isHelpModalOpen}
+                onClose={closeHelpModal}
+                newGame={newGame}
+                isFirstVisit={isFirstVisit}
+                start={start}
+                isDark={isDark}
+            />
             <StatisticModal
                 isOpen={isStatisticModalOpen}
                 onClose={closeStatisticModal}
