@@ -25,7 +25,6 @@ const GuessGrid = ({ guess, setGuess }: IProps) => {
 
     useEffect(() => {
         if (guess.length === 0 && previousGuess?.length === MAX_WORD_LENGTH) {
-            console.log("previousGuess", guess, previousGuess, isValidWord(previousGuess));
             if (isValidWord(previousGuess)) {
                 if (alreadyGuessed.map((g) => g.word).includes(previousGuess)) {
                     setState({ isGuessInvalid: true });

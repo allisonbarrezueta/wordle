@@ -10,7 +10,7 @@ type IProps = {
 
 const Guess = ({ guess, isInvalid }: IProps) => {
     const letters = guess.word ? guess.word.split("") : [];
-    console.log("guess", guess);
+
     const letterList = [...letters, ...Array(MAX_WORD_LENGTH - letters.length).fill("")];
 
     return (

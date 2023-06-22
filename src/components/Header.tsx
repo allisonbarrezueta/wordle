@@ -5,16 +5,20 @@ import StatisticIcon from "./icons/StatisticIcon";
 type ModalProps = {
     openHelpModal: () => void;
     openStatisticModal: () => void;
+    setIsDark: (isDark: boolean) => void;
+    isDark: boolean;
 };
 
-const Header: React.FC<ModalProps> = ({ openHelpModal, openStatisticModal }) => {
+const Header: React.FC<ModalProps> = ({ openHelpModal, openStatisticModal, setIsDark, isDark }) => {
     const [isChecked, setIsChecked] = useState(false);
 
     useEffect(() => {
         if (isChecked) {
             document.documentElement.classList.add("dark");
+            setIsDark(true);
         } else {
             document.documentElement.classList.remove("dark");
+            setIsDark(false);
         }
     }, [isChecked]);
 
@@ -25,12 +29,12 @@ const Header: React.FC<ModalProps> = ({ openHelpModal, openStatisticModal }) => 
     return (
         <div className="p-5 bg-background dark:bg-darkHeader dark:bg-opacity-3 rounded-md flex flex-row items-center justify-center w-10/12 relative">
             <button className="absolute left-0 inset-y-0 pl-6" onClick={openHelpModal}>
-                <HelpIcon />
+                <HelpIcon isDark={isDark} />
             </button>
             <span className="text-textHeader dark:text-white leading-17 text-40">WORDLE</span>
             <div className="flex flex-row absolute right-0 inset-y-0 pr-6">
                 <button onClick={openStatisticModal}>
-                    <StatisticIcon />
+                    <StatisticIcon isDark={isDark} />
                 </button>
                 <div className="flex flex-row items-center">
                     <input type="checkbox" id="toggle" className="toggle--checkbox" onChange={handleAll} />

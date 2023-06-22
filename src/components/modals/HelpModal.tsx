@@ -7,12 +7,23 @@ import ExampleIcon3 from "../icons/ExampleIcon3";
 type ModalProps = {
     isOpen: boolean;
     onClose: () => void;
+    newGame: () => void;
+    isFirstVisit: boolean;
+    start: () => void;
 };
 
-const HelpModal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
+const HelpModal: React.FC<ModalProps> = ({ isOpen, onClose, newGame, isFirstVisit, start }) => {
     if (!isOpen) {
         return null;
     }
+
+    const play = () => {
+        if (isFirstVisit) {
+            newGame();
+            start();
+        }
+        onClose();
+    };
 
     return (
         <Transition appear show={isOpen} as={Fragment}>
@@ -27,7 +38,7 @@ const HelpModal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
                             leave="ease-in duration-200"
                             leaveFrom="opacity-100 scale-100"
                             leaveTo="opacity-0 scale-95">
-                            <Dialog.Panel className="w-full max-w-lg transform overflow-hidden bg-[rgba(243, 243, 243,0.89)] dark:bg-darkHelpBg dark:border-[#939B9F] dark:border-1 p-6 text-left align-middle transition-all border-black border-1 rounded-md flex flex-col">
+                            <Dialog.Panel className="w-full max-w-lg transform overflow-hidden bg-[#f3f3f3e2] dark:bg-darkHelpBg dark:border-[#939B9F] dark:border-1 p-6 text-left align-middle transition-all border-black border-1 rounded-md flex flex-col">
                                 <div className="font-extrabold leading-11 text-black text-35 justify-center items-center flex dark:text-white">
                                     Cómo Jugar
                                 </div>
@@ -57,7 +68,7 @@ const HelpModal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
                                 <span className="text-center text-[19px] mt-2 py-6 dark:text-white text-black">
                                     ¡Una palabra nueva cada 5 minutos!
                                 </span>
-                                <button onClick={onClose} className="mt-4 justify-center">
+                                <button onClick={play} className="mt-4 justify-center">
                                     <span className="bg-green-play text-28 font-bold leading-8 border border-transparent text-white rounded-xs px-20 py-2">
                                         !JUGAR¡
                                     </span>
