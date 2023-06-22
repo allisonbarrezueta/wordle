@@ -48,7 +48,7 @@ function evaluateGuess(answer: string, guess: string): LetterState[] {
             lettersToCheck.splice(lettersToCheck.indexOf(letter), 1);
         }
     });
-
+    console.log("RESULT", result);
     return result;
 }
 

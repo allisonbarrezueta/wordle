@@ -29,14 +29,13 @@ const useGuess = (): [string, React.Dispatch<React.SetStateAction<string>>, (let
     const addGuessLetter = (letter: string): void => {
         setGuess((prevGuess) => {
             const newGuess = (letter.length === 1 && prevGuess.length !== MAX_WORD_LENGTH ? prevGuess + letter : prevGuess).toUpperCase();
-            console.log(newGuess);
 
-            if (newGuess === "´") {
+            if (letter === "´") {
                 previousKeyBracketLeft.current = "BracketLeft";
             } else if (previousKeyBracketLeft?.current === "BracketLeft") {
                 const vowelWithAccent = getVowelWithAccent(letter);
                 previousKeyBracketLeft.current = "";
-                return vowelWithAccent;
+                return prevGuess.slice(0, -1) + vowelWithAccent;
             }
             if (letter === "Backspace") {
                 return prevGuess.slice(0, -1);

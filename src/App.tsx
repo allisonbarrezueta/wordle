@@ -26,6 +26,11 @@ function App() {
 
     useEffect(() => {
         localStorage.setItem("timer", timer.toString());
+        if (timer <= 0) {
+            outOfTime();
+            stop();
+            openStatisticModal();
+        }
     }, [timer]);
 
     const openHelpModal = () => {
@@ -52,6 +57,15 @@ function App() {
         } else {
             setIsFirstVisit(false);
         }
+
+        const storedStartTime = localStorage.getItem("timer");
+        if (storedStartTime && !isFirstVisit && gameStatus.state !== GameState.WON && gameStatus.state !== GameState.LOST) {
+            const startTime = parseInt(storedStartTime);
+
+            if (startTime >= 0) {
+                start();
+            }
+        }
     }, []);
 
     useEffect(() => {
@@ -59,19 +73,11 @@ function App() {
     }, [isFirstVisit]);
 
     useEffect(() => {
-        if (gameStatus.state !== GameState.IN_PROGRESS) {
+        if ((gameStatus.state === GameState.WON || gameStatus.state === GameState.LOST) && !isFirstVisit) {
             openStatisticModal();
             stop();
         }
     }, [gameStatus]);
-
-    useEffect(() => {
-        if (timer <= 0) {
-            outOfTime();
-            stop();
-            openStatisticModal();
-        }
-    }, [timer]);
 
     return (
         <div className="flex flex-col bg-background bg-opacity-89 dark:bg-darkHelpBg dark:bg-opacity-89 min-h-screen items-center px-10 lg:px-48 py-4">

@@ -19,7 +19,6 @@ const HelpModal: React.FC<ModalProps> = ({ isOpen, onClose, newGame, isFirstVisi
 
     const play = () => {
         if (isFirstVisit) {
-            newGame();
             start();
         }
         onClose();
