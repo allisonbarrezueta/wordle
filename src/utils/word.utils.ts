@@ -78,4 +78,36 @@ const isSameLetterWithOrWithoutAccent = (letter1: string, letter2: string) => {
     return normalizedLetter1 === normalizedLetter2;
 };
 
-export { evaluateGuess, getRandomWord, isValidWord, LetterState, MAX_WORD_LENGTH, calculateCountdown, formatTime, isSameLetterWithOrWithoutAccent };
+const getVowelWithAccent = (key: string) => {
+    switch (key) {
+        case "KeyA":
+        case "A":
+            return "Á";
+        case "KeyE":
+        case "E":
+            return "É";
+        case "KeyI":
+        case "I":
+            return "Í";
+        case "KeyO":
+        case "O":
+            return "Ó";
+        case "KeyU":
+        case "U":
+            return "Ú";
+        default:
+            return "";
+    }
+};
+
+export {
+    evaluateGuess,
+    getRandomWord,
+    isValidWord,
+    LetterState,
+    MAX_WORD_LENGTH,
+    calculateCountdown,
+    formatTime,
+    isSameLetterWithOrWithoutAccent,
+    getVowelWithAccent,
+};

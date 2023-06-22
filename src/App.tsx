@@ -19,9 +19,9 @@ function App() {
     const [isStatisticModalOpen, setIsStatisticHelpModalOpen] = useState(false);
     const [isFirstVisit, setIsFirstVisit] = useState<boolean>(false);
     const [guess, setGuess, addGuessLetter] = useGuess();
-    const { gameStatus, newGame, answer, selectedAnswers, outOfTime } = useStore();
+    const { gameStatus, newGame, answer, outOfTime } = useStore();
     const [isDark, setIsDark] = useState<boolean>(false);
-    console.log("selectedAnswers", selectedAnswers);
+
     const { timer, start, stop, restart } = useTimerStore();
 
     useEffect(() => {
@@ -78,6 +78,7 @@ function App() {
             <Header openHelpModal={openHelpModal} openStatisticModal={openStatisticModal} setIsDark={setIsDark} isDark={isDark} />
             <GuessGrid guess={guess} setGuess={setGuess} />
             <KeyboardInput onLetterPressed={addGuessLetter} />
+
             <HelpModal isOpen={isHelpModalOpen} onClose={closeHelpModal} newGame={newGame} isFirstVisit={isFirstVisit} start={start} />
             <StatisticModal
                 isOpen={isStatisticModalOpen}

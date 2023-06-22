@@ -13,9 +13,9 @@ const getKeyStyle = (letter: string, keysPressed: Record<string, LetterState>) =
     const styles: string[] = [];
 
     if (keysPressed[letter]) {
-        styles.push("text-white");
+        styles.push("text-white bg-keyBackgroundLight dark:bg-keyBackgroundDark");
         if (keysPressed[letter] === LetterState.MISS) {
-            styles.push("bg-[#939B9F] hover:cursor-not-allowed");
+            styles.push("hover:cursor-not-allowed");
         }
     } else {
         styles.push("border hover:cursor-pointer hover:border-gray-400");

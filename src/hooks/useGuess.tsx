@@ -1,10 +1,11 @@
 import { useEffect, useRef, useState } from "react";
 
-import { MAX_WORD_LENGTH } from "../utils";
+import { MAX_WORD_LENGTH, getVowelWithAccent } from "../utils";
 
 const useGuess = (): [string, React.Dispatch<React.SetStateAction<string>>, (letter: string) => void] => {
     const [guess, setGuess] = useState<string>("");
     const previousKey = useRef<string>("");
+    const previousKeyBracketLeft = useRef<string>("");
 
     const isValidKey = (key: string): boolean => {
         if (key === "Backspace" || key === "Enter") {
@@ -28,7 +29,15 @@ const useGuess = (): [string, React.Dispatch<React.SetStateAction<string>>, (let
     const addGuessLetter = (letter: string): void => {
         setGuess((prevGuess) => {
             const newGuess = (letter.length === 1 && prevGuess.length !== MAX_WORD_LENGTH ? prevGuess + letter : prevGuess).toUpperCase();
+            console.log(newGuess);
 
+            if (newGuess === "´") {
+                previousKeyBracketLeft.current = "BracketLeft";
+            } else if (previousKeyBracketLeft?.current === "BracketLeft") {
+                const vowelWithAccent = getVowelWithAccent(letter);
+                previousKeyBracketLeft.current = "";
+                return vowelWithAccent;
+            }
             if (letter === "Backspace") {
                 return prevGuess.slice(0, -1);
             }
@@ -44,7 +53,13 @@ const useGuess = (): [string, React.Dispatch<React.SetStateAction<string>>, (let
     };
 
     const onKeyDown = (event: KeyboardEvent) => {
-        if (isValidKey(event.code)) {
+        if (event.code === "BracketLeft" && /[aeiouáéíóú]/i.test(event.code)) {
+            previousKeyBracketLeft.current = event.code;
+        } else if (previousKeyBracketLeft?.current === "BracketLeft") {
+            const vowelWithAccent = getVowelWithAccent(event.code);
+            addGuessLetter(vowelWithAccent);
+            previousKeyBracketLeft.current = "";
+        } else if (isValidKey(event.code)) {
             addGuessLetter(event.key);
         }
         previousKey.current = event.code;
