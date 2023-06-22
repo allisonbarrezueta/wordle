@@ -66,12 +66,10 @@ const useStore = create<IStoreState>(
                             _gameStatus.state = GameState.WON;
                             _gameStatus.wins += 1;
                             _gameStatus.totalPlays += 1;
-                            return { gameStatus: _gameStatus };
                         } else if (state.alreadyGuessed.length + 1 === MAX_GUESSES) {
                             _gameStatus.gameOver = true;
                             _gameStatus.state = GameState.LOST;
                             _gameStatus.totalPlays += 1;
-                            return { gameStatus: _gameStatus };
                         }
 
                         return {

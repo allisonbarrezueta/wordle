@@ -66,7 +66,7 @@ const GuessGrid = ({ guess, setGuess }: IProps) => {
 
     const numberOfGuessesRemaining = MAX_GUESSES - guesses.length;
     guesses = guesses.concat(Array(numberOfGuessesRemaining).fill(""));
-
+    console.log("==>", guesses);
     return (
         <div className="flex-1 flex flex-col items-center justify-center py-5 px-4 mx-auto w-10/12">
             <div className="w-full h-full max-h-[70%] max-w-[70%] grid grid-rows-5 gap-3 justify-around">

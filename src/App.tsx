@@ -8,11 +8,6 @@ import { useGuess } from "./hooks";
 import GuessGrid from "./components/GuessGrid";
 import useStore, { GameState } from "./store";
 import { useTimerStore } from "./timerStore";
-import { formatTime } from "./utils";
-
-interface AppState {
-    isFirstVisit: boolean;
-}
 
 function App() {
     const [isHelpModalOpen, setIsHelpModalOpen] = useState(false);
@@ -74,8 +69,8 @@ function App() {
 
     useEffect(() => {
         if ((gameStatus.state === GameState.WON || gameStatus.state === GameState.LOST) && !isFirstVisit) {
-            openStatisticModal();
             stop();
+            openStatisticModal();
         }
     }, [gameStatus]);
 

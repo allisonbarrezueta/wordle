@@ -13,15 +13,12 @@ const getKeyStyle = (letter: string, keysPressed: Record<string, LetterState>) =
     const styles: string[] = [];
 
     if (keysPressed[letter]) {
-        styles.push("text-white bg-keyBackgroundLight dark:bg-keyBackgroundDark");
         if (keysPressed[letter] === LetterState.MISS) {
             styles.push("hover:cursor-not-allowed");
         }
-    } else {
-        styles.push("border hover:cursor-pointer hover:border-gray-400");
     }
 
-    styles.push(mappings.StateToColor[keysPressed[letter]]);
+    styles.push(mappings.StateToColor[keysPressed[letter]] || "bg-keyBackgroundLight dark:bg-keyBackgroundDark");
     return styles.join(" ");
 };
 

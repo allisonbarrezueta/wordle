@@ -12,7 +12,7 @@ type ModalProps = {
     start: () => void;
 };
 
-const HelpModal: React.FC<ModalProps> = ({ isOpen, onClose, newGame, isFirstVisit, start }) => {
+const HelpModal: React.FC<ModalProps> = ({ isOpen, onClose, isFirstVisit, start }) => {
     if (!isOpen) {
         return null;
     }
